@@ -1,9 +1,11 @@
-import React from 'react'
-import Link from 'next/link'
 import {TiHome} from 'react-icons/ti';
-import {FaTruck} from 'react-icons/fa'
+import {FaTruck, FaFileInvoice} from 'react-icons/fa'
 import {BsPersonFill, BsPeopleFill} from 'react-icons/bs'
 import {GiCargoShip} from 'react-icons/gi'
+import {MdSupport} from 'react-icons/md'
+import {SiGoogleanalytics} from 'react-icons/si'
+import {HiCreditCard} from 'react-icons/hi'
+import {AiTwotoneSetting} from 'react-icons/ai'
 import NavLink from './nav-link';
 
 
@@ -29,64 +31,65 @@ const SideNav = () => {
           aTag='Vehicles'
         />
 
-        <li className='flex items-center px-5 py-3 rounded-3xl'>
-          <span className='flex items-center text-2xl text-slate-600'> <BsPeopleFill/> </span>
-          <Link href="/">
-            <a className='ml-3 text-sm text-slate-600'>Transporters</a>
-        </Link>
-        </li>
+        <NavLink
+          location='transporters'
+          navIcon={<BsPeopleFill/>}
+          href='/transporters' 
+          aTag='Transporters'
+        />
 
-        <li className='flex items-center px-5 py-3 rounded-full'>
-          <span className='flex items-center text-2xl text-slate-600'> <BsPersonFill/> </span>
-          <Link href="/">
-            <a className='ml-3 text-sm text-slate-600'>Customers</a>
-        </Link>
-        </li>
+        <NavLink
+          location='customers'
+          navIcon={<BsPersonFill/>}
+          href='/customers' 
+          aTag='Customers'
+        />
 
-        <li className='flex items-center px-5 py-3 rounded-full'>
-          <span className='flex items-center text-2xl text-slate-600'> <GiCargoShip/> </span>
-          <Link href="/">
-            <a className='ml-3 text-sm text-slate-600'>Shipments</a>
-        </Link>
-        </li>
+        <NavLink
+          location='shipments'
+          navIcon={<GiCargoShip/>}
+          href='/shipments' 
+          aTag='Shipments'
+        />
       </ul>
+      
 
       <ul className='mt-5'>
         <p className='uppercase font-medium text-slate-600 text-xs px-5 py-3'> Internal tools </p>
-        <li className='px-5 py-3 rounded-3xl'>
-          <span className='w-2.5 h-2.5 bg-gray-600'> M </span>
-          <Link href="/">
-            <a className='ml-3 text-sm text-slate-600'>Support Tickets</a>
-        </Link>
-        </li>
+        <NavLink
+          location='support-tickets'
+          navIcon={<MdSupport/>}
+          href='/support-tickets' 
+          aTag='Support Tickets'
+        />
 
-        <li className='px-5 py-3 rounded-3xl'>
-          <span className='w-2.5 h-2.5 bg-gray-600'> M </span>
-          <Link href="/">
-            <a className='ml-3 text-sm text-slate-600'>Invoices</a>
-        </Link>
-        </li>
+        <NavLink
+          location='invoices'
+          navIcon={<FaFileInvoice/>}
+          href='/invoices' 
+          aTag='Invoices'
+        />
 
-        <li className='px-5 py-3 rounded-3xl'>
-          <span className='w-2.5 h-2.5 bg-gray-600'> M </span>
-          <Link href="/">
-            <a className='ml-3 text-sm text-slate-600'>Analytics</a>
-        </Link>
-        </li>
+        <NavLink
+          location='analytics'
+          navIcon={<SiGoogleanalytics/>}
+          href='/analytics' 
+          aTag='Analytics'
+        />
 
-        <li className='px-5 py-3 rounded-3xl'>
-          <span className='w-2.5 h-2.5 bg-gray-600'> M </span>
-          <Link href="/">
-            <a className='ml-3 text-sm text-slate-600'>Payments</a>
-        </Link>
-        </li>
+        <NavLink
+          location='payments'
+          navIcon={<HiCreditCard/>}
+          href='/payments' 
+          aTag='Payments'
+        />
 
-        <li className='px-5 py-3 rounded-3xl'>
-          <span className='w-2.5 h-2.5 bg-gray-600'> M </span>
-          <Link href="/">
-            <a className='ml-3 text-sm text-slate-600'>Settings</a>
-        </Link>
-        </li>
+        <NavLink
+          location='settings'
+          navIcon={<AiTwotoneSetting/>}
+          href='/settings' 
+          aTag='Settings'
+        />
       </ul>
     </nav>
   )

@@ -1,6 +1,29 @@
-import React from 'react'
+import { useState } from 'react'
+import LineChart from "./line-chart";
+import { UserData } from "../Data";
 
 const ShipmentsContainer = () => {
+    const [userData, setUserData] = useState({
+        labels: UserData.map((data) => data.date),
+        datasets: [
+          {
+            label: "Shipments",
+            data: UserData.map((data) => data.shipments),
+            backgroundColor: "#ffffff",
+            borderColor: "#14b8a6",
+            borderWidth: 2,
+          },
+
+          {
+            label: "Vehicles",
+            data: UserData.map((data) => data.vehicles),
+            backgroundColor: "#ffffff",
+            borderColor: "#8b5cf6",
+            borderWidth: 2,
+          },
+        ],
+      });
+
   return (
     <section>
         <div className="flex justify-between flex-wrap items-center mt-12">
@@ -41,9 +64,13 @@ const ShipmentsContainer = () => {
                     </div>
                     <div className='flex items-center mr-5'>
                         <div className="w-5 h-1.5 mr-3 bg-violet-500"></div>
-                        <p className="font-medium text-xs text-slate-600"> Shipments </p>
+                        <p className="font-medium text-xs text-slate-600"> Vehicles </p>
                     </div>
                 </div>
+            </div>
+
+            <div className='mt-5'>
+                <LineChart chartData={userData} />
             </div>
         </div>
     </section>
