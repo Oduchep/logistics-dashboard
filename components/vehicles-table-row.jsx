@@ -3,7 +3,7 @@ import { FaTruck } from 'react-icons/fa'
 
 const VehiclesTableRow = ({ vehicleNumber, vehicleName, location, destination, logStatus, transporter}) => {
   return (
-    <tr className='bg-white border-b-8 border-slate-100'>
+    <tr className='bg-white border-b-8 border-slate-100 overflow-x-auto'>
       <td className='flex px-2 py-5 rounded-l'>
         <span className='ml-5 mr-3'>
           <span className='text-3xl text-slate-700'><FaTruck/></span>

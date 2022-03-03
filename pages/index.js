@@ -11,7 +11,7 @@ export default function Home() {
       <TopNav/>
 
       <section className="mt-2">
-        <h2 className="text-3xl font-bold text-slate-800"> Good Evening, Michael</h2>
+        <h2 className="text-3xl font-bold text-slate-800"> Good Evening, Peter</h2>
         <p className="my-1 text-slate-600 text-sm">
           Glad to have you back, here&#39;s an overview of your operations today
         </p>

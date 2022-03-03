@@ -1,14 +1,23 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import LineChart from "./line-chart";
-import { UserData } from "../Data";
+import { DataContext } from '../DataContext';
+import ShipmentsMenuList from './shipments-menu-list';
 
 const ShipmentsContainer = () => {
-    const [userData, setUserData] = useState({
-        labels: UserData.map((data) => data.date),
+    const {daily, monthly, yearly, shipmentsMenu} = useContext(DataContext)
+    const [dailyShipments, setDailyShipments] = daily
+    const [monthlyShipments, setMonthlyShipments] = monthly
+    const [yearlyShipments, setYearlyShipments] = yearly
+    const [activeShipmentsMenu, setActiveShipmentsMenu] = shipmentsMenu
+    // console.log(shipmentsMenuTag);
+
+    console.log(dailyShipments)
+    const [dailyData, setDailyData] = useState({
+        labels: dailyShipments.map((data) => data.time),
         datasets: [
           {
             label: "Shipments",
-            data: UserData.map((data) => data.shipments),
+            data: dailyShipments.map((data) => data.shipments),
             backgroundColor: "#ffffff",
             borderColor: "#14b8a6",
             borderWidth: 2,
@@ -16,7 +25,49 @@ const ShipmentsContainer = () => {
 
           {
             label: "Vehicles",
-            data: UserData.map((data) => data.vehicles),
+            data: dailyShipments.map((data) => data.vehicles),
+            backgroundColor: "#ffffff",
+            borderColor: "#8b5cf6",
+            borderWidth: 2,
+          },
+        ],
+      });
+
+    const [monthlyData, setMonthlyData] = useState({
+        labels: monthlyShipments.map((data) => data.date),
+        datasets: [
+          {
+            label: "Shipments",
+            data: monthlyShipments.map((data) => data.shipments),
+            backgroundColor: "#ffffff",
+            borderColor: "#14b8a6",
+            borderWidth: 2,
+          },
+
+          {
+            label: "Vehicles",
+            data: monthlyShipments.map((data) => data.vehicles),
+            backgroundColor: "#ffffff",
+            borderColor: "#8b5cf6",
+            borderWidth: 2,
+          },
+        ],
+      });
+
+      const [yearlyData, setYearlyData] = useState({
+        labels: yearlyShipments.map((data) => data.month),
+        datasets: [
+          {
+            label: "Shipments",
+            data: yearlyShipments.map((data) => data.shipments),
+            backgroundColor: "#ffffff",
+            borderColor: "#14b8a6",
+            borderWidth: 2,
+          },
+
+          {
+            label: "Vehicles",
+            data: yearlyShipments.map((data) => data.vehicles),
             backgroundColor: "#ffffff",
             borderColor: "#8b5cf6",
             borderWidth: 2,
@@ -35,19 +86,43 @@ const ShipmentsContainer = () => {
             </div>
             <div className="mt-3 bg-white px-6 py-2 rounded-full">
                 <ul className="text-xs flex justify-between">
-                    <li className="font-medium text-slate-600 px-2 py-1 mx-1"> 1D </li>
-                    <li className="font-medium text-slate-600 px-2 py-1 mx-1"> SD </li>
-                    <li className="bg-blue-500 font-medium text-white px-2 py-1 mx-1"> 1M </li>
-                    <li className="font-medium text-slate-600 px-2 py-1 mx-1"> 1Y </li>
-                    <li className="font-medium text-slate-600 px-2 py-1 mx-1"> Max </li>
+                    <ShipmentsMenuList
+                    index='1'
+                    title='1D'
+                    activeTab={activeShipmentsMenu}
+                    setActiveTab={setActiveShipmentsMenu}/>
+
+                    <ShipmentsMenuList
+                    index='2'
+                    title='5D'
+                    activeTab={activeShipmentsMenu}
+                    setActiveTab={setActiveShipmentsMenu}/>
+
+                    <ShipmentsMenuList
+                    index='3'
+                    title='1M'
+                    activeTab={activeShipmentsMenu}
+                    setActiveTab={setActiveShipmentsMenu}/>
+
+                    <ShipmentsMenuList
+                    index='4'
+                    title='1Y'
+                    activeTab={activeShipmentsMenu}
+                    setActiveTab={setActiveShipmentsMenu}/>
+
+                    <ShipmentsMenuList
+                    index='5'
+                    title='Max'
+                    activeTab={activeShipmentsMenu}
+                    setActiveTab={setActiveShipmentsMenu}/>
                 </ul>
             </div>
         </div>
 
         <div className='my-4 bg-white p-5'>
             <div className='flex justify-between flex-wrap'>
-                <div className='mt-2 w-full lg:w-2/6 flex justify-between'>
-                    <div>
+                <div className='mt-2 w-full lg:w-2/6 flex'>
+                    <div className='mr-20'>
                         <p className="uppercase font-medium text-xs text-slate-600"> Shipments </p>
                         <p className='text-2xl font-bold text-slate-800'> 60,000 </p>
                     </div>
@@ -70,7 +145,15 @@ const ShipmentsContainer = () => {
             </div>
 
             <div className='mt-5'>
-                <LineChart chartData={userData} />
+              {activeShipmentsMenu === '1' ? 
+                <LineChart chartData={dailyData} /> :
+              activeShipmentsMenu === '2' ? 
+              <LineChart chartData={dailyData} /> : 
+              activeShipmentsMenu === '4' ? 
+              <LineChart chartData={yearlyData} /> : 
+              <LineChart chartData={monthlyData} />
+              }
+                                
             </div>
         </div>
     </section>
