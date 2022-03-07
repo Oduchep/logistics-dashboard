@@ -1,4 +1,5 @@
 import SideNav from './side-nav'
+import VehiclesModal from './vehicles-modal'
 
 const Layout = ({children}) => {
   return (
@@ -11,6 +12,8 @@ const Layout = ({children}) => {
           <main className='container mx-auto'>{children}</main>
         </div>
       </div>
+      
+      <VehiclesModal/>
     </>
   )
 }

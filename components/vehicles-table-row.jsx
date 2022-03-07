@@ -1,7 +1,22 @@
+import { useContext } from 'react'
+import Image from 'next/image'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 import { FaTruck } from 'react-icons/fa'
+import { DataContext } from '../DataContext'
 
-const VehiclesTableRow = ({ vehicleNumber, vehicleName, location, destination, logStatus, transporter}) => {
+const VehiclesTableRow = ({ data }) => {
+  const {log, tracked, modal} = useContext(DataContext)
+  const [logData] = log
+  const [trackedVehicle, setTrackedVehicle] = tracked
+  const [toggleModal, setToggleModal] = modal
+
+  const trackShipment = (id) => {
+    setTrackedVehicle(logData.filter(data => data.id === id))
+    setToggleModal(true)
+    console.log(trackedVehicle)
+    console.log(toggleModal)
+  }
+
   return (
     <tr className='bg-white border-b-8 border-slate-100 overflow-x-auto'>
       <td className='flex px-2 py-5 rounded-l'>
@@ -9,36 +24,40 @@ const VehiclesTableRow = ({ vehicleNumber, vehicleName, location, destination, l
           <span className='text-3xl text-slate-700'><FaTruck/></span>
         </span>
         <span>
-          <span className='font-bold text-sm block'> {vehicleNumber} </span>
-          <span className='text-xs text-slate-500'> {vehicleName} </span>
+          <span className='font-bold text-sm block'> {data.vehicleNumber} </span>
+          <span className='text-xs text-slate-500'> {data.vehicleName} </span>
         </span>
       </td>
 
-      <td className='px-2 py-5'><span className='font-bold text-sm block'> {location} </span>
+      <td className='px-2 py-5'><span className='font-bold text-sm block'> {data.location} </span>
         <span className='text-xs text-slate-500'> Start Location </span>
       </td>
 
-      <td className='px-2 py-5'><span className='font-bold text-sm block'> {destination} </span>
+      <td className='px-2 py-5'><span className='font-bold text-sm block'> {data.destination} </span>
         <span className='text-xs text-slate-500'> Destination </span>
       </td>
 
-      <td className='px-2 py-5'><span className='font-bold text-sm block'> {logStatus} </span>
+      <td className='px-2 py-5'><span className='font-bold text-sm block'> {data.logStatus} </span>
         <span className='text-xs text-slate-500'> Status </span>
       </td>
 
       <td className='flex items-center px-2 py-5'>
-        <span className='mr-4 w-12 h-12 rounded-full bg-slate-800'></span>
+        <span className='mr-4 w-12 h-12 rounded-full bg-slate-800'>
+          <Image width={48} height={48} className=' object-cover rounded-full' src={data.img} alt={data.transporter} />
+        </span>
         <span>
-          <span className='font-bold text-sm block'> {transporter} </span>
+          <span className='font-bold text-sm block'> {data.transporter} </span>
           <span className='text-xs text-slate-500'> Transporter </span>
         </span>
       </td>
 
       <td className='px-2 py-3 rounded-r'>
         <span className='flex items-center'>
-          <span className='font-bold text-sm rounded-full px-4 py-1 border-2 border-slate-200 flex items-center'> <div className={`w-2 h-2 rounded-full mr-2 ${logStatus === 'In Transit' ? 'bg-green-500' : logStatus === 'Cancelled' ? 'bg-red-500' : 'bg-blue-500'}`}></div> {logStatus} </span><span className='ml-2 text-2xl text-slate-500'><BiDotsVerticalRounded/></span>
+          <span className='font-bold text-sm rounded-full px-4 py-1 border-2 border-slate-200 flex items-center'> <div className={`w-2 h-2 rounded-full mr-2 ${data.logStatus === 'In Transit' ? 'bg-green-500' : data.logStatus === 'Cancelled' ? 'bg-red-500' : 'bg-blue-500'}`}></div> {data.logStatus} </span><span className='ml-2 text-2xl text-slate-500'><BiDotsVerticalRounded/></span>
         </span>
-        <span className='text-xs text-slate-500 ml-4 underline'> {logStatus === 'In Transit' ? 'Track Shipment' : 'View Details'} </span>
+        { data.logStatus === 'In Transit' ? 
+        <button onClick={() => trackShipment(data.id)} className='text-xs text-slate-500 ml-4 underline'> Track Shipment </button> : 
+        <button className='text-xs text-slate-500 ml-4 underline'> View Details </button>}
       </td>
     </tr>
   )

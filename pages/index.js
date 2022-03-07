@@ -1,17 +1,22 @@
+import { useContext} from 'react'
 import TopNav from "../components/top-nav";
 import Card from "../components/card";
 import { BsPersonFill, BsPeopleFill } from 'react-icons/bs'
 import {GiCargoShip} from 'react-icons/gi'
 import ShipmentsContainer from "../components/shipments-container";
+import { DataContext } from '../DataContext';
 
 
 export default function Home() {
+  const {userData} = useContext(DataContext)
+  const [user] = userData
+
   return (
     <div>
       <TopNav/>
 
       <section className="mt-2">
-        <h2 className="text-3xl font-bold text-slate-800"> Good Evening, Peter</h2>
+        <h2 className="text-3xl font-bold text-slate-800"> Good Evening, {user.name}</h2>
         <p className="my-1 text-slate-600 text-sm">
           Glad to have you back, here&#39;s an overview of your operations today
         </p>

@@ -3,6 +3,14 @@ import { createContext, useState } from 'react';
 export const DataContext = createContext();
 
 export const DataProvider = (props) => {
+    const [user, setUser] = useState({
+      name: 'Peter',
+      img: '/userImg.jpg'
+    })
+
+    const [trackedVehicle, setTrackedVehicle] = useState([])
+
+    const [toggleModal, setToggleModal] = useState(false)
 
     const [activeShipmentsMenu, setActiveShipmentsMenu] = useState('3')
 
@@ -16,6 +24,7 @@ export const DataProvider = (props) => {
       vehicleNumber: 'ET-272-KJA',
       vehicleName: 'Toyota Highlander 2004',
       destination: 'Ikeja',
+      img: '/transporter-1.jpg'
       },
       {
       id: 2,
@@ -25,24 +34,27 @@ export const DataProvider = (props) => {
       vehicleNumber: 'LG-272-KJA',
       vehicleName: 'Lexus 350 2000',
       destination: 'Ikeja',
+      img: '/transporter-2.jpg'
       },
       {
       id: 3,
-      transporter: 'indiana Jones',
+      transporter: 'Indiana Jones',
       location: 'Abuja',
       logStatus: 'Completed',
       vehicleNumber: 'AJ-111-KVF',
       vehicleName: 'Toyota Highlander 2004',
       destination: 'Lokoja',
+      img: '/transporter-3.jpg'
       },
       {
       id: 4,
-      transporter: 'Peter Okerulu',
+      transporter: 'Pietro J',
       location: 'Port Harcourt',
       logStatus: 'In Transit',
       vehicleNumber: 'PH-144-KSJ',
       vehicleName: 'Ford F150',
       destination: 'Abuja',
+      img: '/transporter-4.jpg'
       },
     ]);
 
@@ -226,6 +238,18 @@ export const DataProvider = (props) => {
   return (
     <DataContext.Provider
       value={{
+        modal:[
+          toggleModal,
+          setToggleModal
+        ],
+        tracked:[
+          trackedVehicle,
+          setTrackedVehicle
+        ],
+        userData:[
+          user,
+          setUser
+        ],
         log:[
           logData,
           setLogData

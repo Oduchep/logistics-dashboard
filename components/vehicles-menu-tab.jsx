@@ -7,7 +7,7 @@ import VehiclesTabContent from './vehicles-tab-content'
 
 const VehiclesMenuTab = () => {
   const {log} = useContext(DataContext);
-  const [logData, setLogData] = log
+  const [logData] = log
   const [activeTab, setActiveTab] = useState('1')
   
   return (
@@ -48,14 +48,10 @@ const VehiclesMenuTab = () => {
             <div className='overflow-x-auto whitespace-nowrap'>
               <table className='w-full table-auto'>
                 <tbody className='overflow-x-auto'>
-                  {logData.map((log) =>{ 
-                    return <VehiclesTableRow key={log.id} 
-                    vehicleNumber={log.vehicleNumber}
-                    vehicleName={log.vehicleName}
-                    location={log.location}
-                    destination={log.destination}
-                    logStatus={log.logStatus}
-                    transporter={log.transporter} /> }
+                  {logData.map((data) =>{ 
+                    return <VehiclesTableRow 
+                    key={data.id} 
+                    data={data} /> }
                   )}
                 </tbody>
               </table>

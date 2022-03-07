@@ -1,6 +1,12 @@
+import { useContext} from 'react'
+import Image from 'next/image'
 import { BsBell } from 'react-icons/bs'
+import { DataContext } from '../DataContext'
 
 const TopNav = () => {
+  const {userData} = useContext(DataContext)
+  const [user] = userData
+
   return (
     <div className='flex justify-end'>
       <div className='border-r-2 border-r-slate-300'>
@@ -13,7 +19,15 @@ const TopNav = () => {
       </div>
 
       <div>
-        <div className='h-12 w-12 bg-slate-300 rounded-full ml-2'>  </div>
+        <div className='h-12 w-12 bg-slate-300 rounded-full ml-2'> 
+          <Image
+          src={user.img}
+          alt={user.name}
+          width={48}
+          height={48}
+          className='object-cover rounded-full'
+          />
+        </div>
       </div>
       
     </div>
