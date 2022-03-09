@@ -4,43 +4,66 @@ import { DataContext } from '../DataContext'
 import { MdCancelPresentation } from 'react-icons/md'
 import { FaTruck } from 'react-icons/fa'
 import { FiSearch } from 'react-icons/fi'
-import { GiDivert } from 'react-icons/gi'
+import styles from '../styles/styles.module.css'
 
 const VehiclesModal = () => {
-    const {log, tracked, modal} = useContext(DataContext)
+    const {trackedVehicle, modal, isSearching} = useContext(DataContext)
     const [toggleModal, setToggleModal] = modal
-    const [trackedVehicle] = tracked
+    const [searching, setSearching] = isSearching
+
+    setTimeout(() => {setSearching(false)}, 10000);
 
   return (
     <div className={`fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full ${toggleModal ? 'block' : 'hidden'}`} id="my-modal">
-        <div className="relative top-24 mx-auto px-5 md:px-10 py-5 border w-4/5 md:w-1/2 shadow-lg rounded-md bg-white">
+        <div className="relative top-24 mx-auto px-5 lg:px-10 py-5 border w-4/5 lg:w-1/2 shadow-lg rounded-md bg-white">
             <div className='mb-3'>
                 <button onClick={() => setToggleModal(false)} className='float-right text-slate-800 text-xl rounded-full'> <MdCancelPresentation/> </button>
             </div>
             <div className='text-center'>
-                <h2 className='font-bold text-xl text-slate-800'> Tracking Vehicle </h2>
-                <p className='text-xs text-slate-500'> Please hold on. Locating vehicle on IPI Network.</p>
+                <h2 className='font-bold text-xl text-slate-800'> {searching ? 'Tracking Vehicle' : 'Location Found'} </h2>
+                <p className='text-xs text-slate-500'> {searching ? 'Please hold on. Locating vehicle on IPI Network.' : 'Vehicle has been successfully located.'}</p>
             </div>
-            <div className='flex my-10'>
-                <div>
-                    <div className='flex'>
-                        <div className='mr-4 w-12 h-12 rounded-full bg-slate-800'>
-                                {/* <Image width={48} height={48} className=' object-cover rounded-full' src={trackedVehicle[0].img} alt={trackedVehicle[0].transporter} /> */}
+            <div className={`flex items-center my-10 ${searching ? 'md:h-40' : ''}`}>
+                <div className='w-full flex flex-wrap justify-between'>
+                    <div className={searching ? 'mx-0' : 'mx-auto md:mx-0'}>
+                        <div className='flex py-3 w-56'>
+                            <div className='mr-4 w-12 h-12 rounded-full bg-slate-800'>
+                                    <Image width={48} height={48} className='object-cover rounded-full' src={toggleModal ? trackedVehicle.img : '/user.jpg'} alt={trackedVehicle.transporter} />
+                            </div>
+                            <span>
+                            <span className='font-bold text-sm block'> {trackedVehicle.transporter} </span>
+                            <span className='text-xs text-slate-500'> Transporter </span>
+                            </span>
+                            {!searching && 
+                                <button><span className='ml-5 text-xs border border-slate-600 py-1 px-5 rounded-full'>View</span></button>
+                            }
+                            
                         </div>
-                        <span>
-                        <span className='font-bold text-sm block'> Name </span>
-                        <span className='text-xs text-slate-500'> Transporter </span>
-                        </span>
+                        {!searching && 
+                            <div className='px-3 py-3 border-y border-slate-300'>
+                            <span className='font-bold text-sm block'> Maryland, Lagos, NG </span>
+                            <span className='text-xs text-slate-500'> Current location </span>
+                            </div>
+                        }
+                        {!searching && 
+                            <div className='px-3 py-3'>
+                            <span className='font-bold text-sm block'> 36 mins </span>
+                            <span className='text-xs text-slate-500'> Time spent so far </span>
+                            </div>
+                        }
                     </div>
-                </div>
-                <div className='w-44 h-44 animate-pulse bg-blue-100 rounded-full flex justify-center items-center'>
-                    <div className="w-36 h-36 animate-pulse bg-blue-200 rounded-full flex justify-center items-center">
-                        <div className="w-28 h-28 animate-pulse bg-blue-300 rounded-full flex justify-center items-center">
-                            <div className='text-2xl font-medium text-slate-500 flex justify-center items-center'>
+                    {!searching && 
+                        <div className='mx-auto w-80 h-48 bg-slate-400 overflow-hidden'>
+                            <iframe width={320} height={192} src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCfDCwk8E9_xavNnEWV8Zg7nGcxvY0xh0A&q=${trackedVehicle.destination}`} alt='map' loading="lazy"></iframe>
+                        </div>
+                    }
+                    {searching && 
+                        <div className={styles.searchPulse}>
+                            <div className='text-3xl text-slate-900 font-medium flex justify-center items-center'>
                                 <FiSearch/>
                             </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
             <div className="flex justify-between flex-wrap pr-2 md:pr-5">
@@ -50,21 +73,21 @@ const VehiclesModal = () => {
                             <span className='text-3xl text-slate-700'><FaTruck/></span>
                         </span>
                         <span>
-                            <span className='font-bold text-sm block'> Vehicle number </span>
-                            <span className='text-xs text-slate-500'> Vehicle name </span>
+                            <span className='font-bold text-sm block'> {trackedVehicle.vehicleNumber} </span>
+                            <span className='text-xs text-slate-500'> {trackedVehicle.vehicleName} </span>
                         </span>
                     </div>
                 </div>
                 <div className='px-2 mx-auto my-2'>
-                    <span className='font-bold text-sm block'> Lagos </span>
+                    <span className='font-bold text-sm block'> {trackedVehicle.location} </span>
                     <span className='text-xs text-slate-500'> Start Location </span>
                 </div>
                 <div className='px-2 mx-auto my-2'>
-                    <span className='font-bold text-sm block'> Ikeja </span>
+                    <span className='font-bold text-sm block'> {trackedVehicle.destination} </span>
                     <span className='text-xs text-slate-500'> Destination </span>
                 </div>
                 <div className='px-2 mx-auto my-2'>
-                    <span className='font-bold text-sm block'> In transit </span>
+                    <span className='font-bold text-sm block'> {trackedVehicle.logStatus} </span>
                     <span className='text-xs text-slate-500'> Status </span>
                 </div>
             </div>

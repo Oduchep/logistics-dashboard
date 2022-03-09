@@ -5,17 +5,8 @@ import { FaTruck } from 'react-icons/fa'
 import { DataContext } from '../DataContext'
 
 const VehiclesTableRow = ({ data }) => {
-  const {log, tracked, modal} = useContext(DataContext)
-  const [logData] = log
-  const [trackedVehicle, setTrackedVehicle] = tracked
-  const [toggleModal, setToggleModal] = modal
+  const {openModal} = useContext(DataContext)
 
-  const trackShipment = (id) => {
-    setTrackedVehicle(logData.filter(data => data.id === id))
-    setToggleModal(true)
-    console.log(trackedVehicle)
-    console.log(toggleModal)
-  }
 
   return (
     <tr className='bg-white border-b-8 border-slate-100 overflow-x-auto'>
@@ -56,7 +47,7 @@ const VehiclesTableRow = ({ data }) => {
           <span className='font-bold text-sm rounded-full px-4 py-1 border-2 border-slate-200 flex items-center'> <div className={`w-2 h-2 rounded-full mr-2 ${data.logStatus === 'In Transit' ? 'bg-green-500' : data.logStatus === 'Cancelled' ? 'bg-red-500' : 'bg-blue-500'}`}></div> {data.logStatus} </span><span className='ml-2 text-2xl text-slate-500'><BiDotsVerticalRounded/></span>
         </span>
         { data.logStatus === 'In Transit' ? 
-        <button onClick={() => trackShipment(data.id)} className='text-xs text-slate-500 ml-4 underline'> Track Shipment </button> : 
+        <button onClick={() => openModal(data)} className='text-xs text-slate-500 ml-4 underline'> Track Shipment </button> : 
         <button className='text-xs text-slate-500 ml-4 underline'> View Details </button>}
       </td>
     </tr>

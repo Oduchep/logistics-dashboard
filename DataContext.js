@@ -8,16 +8,32 @@ export const DataProvider = (props) => {
       img: '/userImg.jpg'
     })
 
-    const [trackedVehicle, setTrackedVehicle] = useState([])
 
     const [toggleModal, setToggleModal] = useState(false)
 
+    const [searching, setSearching] = useState(true)
+
     const [activeShipmentsMenu, setActiveShipmentsMenu] = useState('3')
 
+    const [trackedVehicle, setTrackedVehicle] = useState([])
+
+    // modal function
+    const openModal = (value) => {
+      ModalData(value)
+      setToggleModal(true)
+      setSearching(true)
+    }
+
+    const ModalData = (id) => {
+      setTrackedVehicle(() => {
+        console.log(id);
+        return id;
+      });
+    };
 
     const [logData, setLogData] = useState([
       {
-      id: 1,
+      id: '01',
       transporter: 'Johnson C',
       location: 'Lagos',
       logStatus: 'In Transit',
@@ -27,7 +43,7 @@ export const DataProvider = (props) => {
       img: '/transporter-1.jpg'
       },
       {
-      id: 2,
+      id: '02',
       transporter: 'Jeremy Lopez',
       location: 'Lagos',
       logStatus: 'Cancelled',
@@ -37,7 +53,7 @@ export const DataProvider = (props) => {
       img: '/transporter-2.jpg'
       },
       {
-      id: 3,
+      id: '03',
       transporter: 'Indiana Jones',
       location: 'Abuja',
       logStatus: 'Completed',
@@ -47,7 +63,7 @@ export const DataProvider = (props) => {
       img: '/transporter-3.jpg'
       },
       {
-      id: 4,
+      id: '04',
       transporter: 'Pietro J',
       location: 'Port Harcourt',
       logStatus: 'In Transit',
@@ -238,22 +254,22 @@ export const DataProvider = (props) => {
   return (
     <DataContext.Provider
       value={{
+        openModal,
+        isSearching:[
+          searching,
+          setSearching
+        ],
         modal:[
           toggleModal,
           setToggleModal
         ],
-        tracked:[
-          trackedVehicle,
-          setTrackedVehicle
-        ],
+        trackedVehicle,
         userData:[
           user,
           setUser
         ],
-        log:[
-          logData,
-          setLogData
-        ],
+        logData,
+        setLogData,
         daily:[
           dailyShipments,
           setDailyShipments

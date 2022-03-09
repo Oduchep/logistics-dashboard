@@ -6,8 +6,7 @@ import VehiclesTableRow from './vehicles-table-row'
 import VehiclesTabContent from './vehicles-tab-content'
 
 const VehiclesMenuTab = () => {
-  const {log} = useContext(DataContext);
-  const [logData] = log
+  const {logData} = useContext(DataContext);
   const [activeTab, setActiveTab] = useState('1')
   
   return (
