@@ -11,7 +11,7 @@ const VehiclesMenuTab = () => {
   
   return (
       <>
-        <div className='px-3 bg-slate-100 flex justify-between items-center rounded-t'>
+        <div className='px-3 bg-slate-100 dark:bg-night-black flex justify-between items-center rounded-t'>
           <div>
             <ul className='flex flex-wrap'>
               <VehiclesMenuList
@@ -39,10 +39,10 @@ const VehiclesMenuTab = () => {
               setActiveTab={setActiveTab}/>
             </ul>
           </div>
-          <div className='text-2xl font-medium text-slate-500 mr-4'> <FiSearch/> </div>
+          <div className='text-2xl font-medium text-slate-500 dark:text-white mr-4'> <FiSearch/> </div>
         </div>
 
-        <div className='mt-1 p-3 pb-3 bg-slate-100 rounded-b w-full'>
+        <div className='mt-1 p-3 pb-3 bg-slate-100 dark:bg-night-black rounded-b w-full'>
           <VehiclesTabContent index='1' activeTab={activeTab}>
             <div className='overflow-x-auto whitespace-nowrap'>
               <table className='w-full table-auto'>

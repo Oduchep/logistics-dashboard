@@ -9,11 +9,11 @@ const TopNav = () => {
 
   return (
     <div className='flex justify-end'>
-      <div className='border-r-2 border-r-slate-300'>
-        <div className='h-12 w-12 bg-slate-300 rounded-full mr-2 flex justify-center items-center'>
-          <div className='text-xl font-extrabold text-slate-800 relative'>
+      <div className='border-r-2 border-r-slate-300 dark:border-r-evening-blue'>
+        <div className='h-12 w-12 bg-slate-300 dark:bg-evening-blue rounded-full mr-2 flex justify-center items-center'>
+          <div className='text-xl font-extrabold text-slate-800 dark:text-white relative'>
             <BsBell/>
-            <div className='w-2 h-2 bg-orange-500 rounded-full absolute top-0 right-0'></div>
+            <span className='w-2 h-2 bg-orange-500 rounded-full absolute top-0 right-0'></span>
             </div>
         </div>
       </div>

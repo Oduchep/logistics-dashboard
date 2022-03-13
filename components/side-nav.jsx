@@ -13,9 +13,9 @@ const SideNav = () => {
 
   return (
     <nav>
-      <h1 className='px-5 font-bold text-2xl mb-5'>IPI.</h1>
+      <h1 className='px-5 font-bold text-2xl mb-5 dark:text-white'>IPI<span className='text-blue-600'>.</span></h1>
       <ul className='scroll-smooth'>
-        <p className='uppercase font-medium text-slate-600 text-xs px-5 py-3'> Main menu </p>
+        <p className='uppercase font-medium text-slate-600 dark:text-slate-400 text-xs px-5 py-3'> Main menu </p>
        
         <NavLink
           location=''
@@ -55,7 +55,7 @@ const SideNav = () => {
       
 
       <ul className='mt-5'>
-        <p className='uppercase font-medium text-slate-600 text-xs px-5 py-3'> Internal tools </p>
+        <p className='uppercase font-medium text-slate-600 dark:text-slate-400 text-xs px-5 py-3'> Internal tools </p>
         <NavLink
           location='support-tickets'
           navIcon={<MdSupport/>}

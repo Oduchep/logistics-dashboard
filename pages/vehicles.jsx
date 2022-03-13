@@ -7,8 +7,8 @@ const Vehicles = () => {
     <>
       <TopNav/>
       <section className="mt-2">
-        <h2 className="text-3xl font-bold text-slate-800"> Vehicles </h2>
-        <p className="my-1 text-slate-600 text-sm">
+        <h2 className="text-3xl font-bold text-slate-800 dark:text-white"> Vehicles </h2>
+        <p className="my-1 text-slate-600 dark:text-white text-sm">
           Manage and track All Vehicles on the IPI Network.
         </p>
       </section>
