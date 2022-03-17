@@ -1,5 +1,5 @@
 import React from 'react'
-import UseDarkMode from './use-dark-mode'
+import UseDarkMode from '../utilities/use-dark-mode'
 import { BsMoonStarsFill } from 'react-icons/bs'
 import { RiSunFill } from 'react-icons/ri'
 

@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import Image from 'next/image'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 import { FaTruck } from 'react-icons/fa'
-import { DataContext } from '../DataContext'
+import { DataContext } from '../utilities/DataContext'
 
 const VehiclesTableRow = ({ data }) => {
   const {openModal} = useContext(DataContext)

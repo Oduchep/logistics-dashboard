@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useContext } from 'react'
-import { DataContext } from '../DataContext'
+import { DataContext } from '../utilities/DataContext'
 import { MdCancelPresentation } from 'react-icons/md'
 import { FaTruck } from 'react-icons/fa'
 import { FiSearch } from 'react-icons/fi'
@@ -41,7 +41,7 @@ const VehiclesModal = () => {
                         </div>
                         {!searching && 
                             <div className='px-3 py-3 border-y border-slate-300 dark:border-slate-500'>
-                            <span className='font-bold dark:font-normal dark:text-white text-sm block'> Maryland, Lagos, NG </span>
+                            <span className='font-bold dark:font-normal dark:text-white text-sm block'> {trackedVehicle.currentLocation}, NG </span>
                             <span className='text-xs text-slate-500'> Current location </span>
                             </div>
                         }
@@ -54,7 +54,7 @@ const VehiclesModal = () => {
                     </div>
                     {!searching && 
                         <div className='mx-auto w-80 h-48 bg-slate-400 dark:bg-evening-blue overflow-hidden'>
-                            <iframe width={320} height={192} src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCfDCwk8E9_xavNnEWV8Zg7nGcxvY0xh0A&q=${trackedVehicle.destination}`} alt='map' loading="lazy"></iframe>
+                            <iframe width={320} height={192} src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCfDCwk8E9_xavNnEWV8Zg7nGcxvY0xh0A&q=${trackedVehicle.currentLocation}`} alt='map' loading="lazy"></iframe>
                         </div>
                     }
                     {searching && 

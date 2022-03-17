@@ -1,5 +1,5 @@
 import Layout from '../components/layout'
-import { DataProvider } from '../DataContext'
+import { DataProvider } from '../utilities/DataContext'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {

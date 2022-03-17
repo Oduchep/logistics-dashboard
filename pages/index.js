@@ -4,7 +4,7 @@ import Card from "../components/card";
 import { BsPersonFill, BsPeopleFill } from 'react-icons/bs'
 import {GiCargoShip} from 'react-icons/gi'
 import ShipmentsContainer from "../components/shipments-container";
-import { DataContext } from '../DataContext';
+import { DataContext } from '../utilities/DataContext';
 
 
 export default function Home() {

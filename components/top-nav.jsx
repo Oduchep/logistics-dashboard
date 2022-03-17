@@ -1,7 +1,7 @@
 import { useContext} from 'react'
 import Image from 'next/image'
 import { BsBell } from 'react-icons/bs'
-import { DataContext } from '../DataContext'
+import { DataContext } from '../utilities/DataContext'
 
 const TopNav = () => {
   const {userData} = useContext(DataContext)

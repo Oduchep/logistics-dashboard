@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { FiSearch } from 'react-icons/fi'
-import { DataContext } from '../DataContext'
+import { DataContext } from '../utilities/DataContext'
 import VehiclesMenuList from './vehicles-menu-list'
 import VehiclesTableRow from './vehicles-table-row'
 import VehiclesTabContent from './vehicles-tab-content'
