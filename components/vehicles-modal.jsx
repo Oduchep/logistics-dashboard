@@ -4,7 +4,6 @@ import { DataContext } from '../utilities/DataContext'
 import { MdCancelPresentation } from 'react-icons/md'
 import { FaTruck } from 'react-icons/fa'
 import { FiSearch } from 'react-icons/fi'
-import styles from '../styles/styles.module.css'
 
 const VehiclesModal = () => {
     const {trackedVehicle, modal, isSearching} = useContext(DataContext)
@@ -58,7 +57,7 @@ const VehiclesModal = () => {
                         </div>
                     }
                     {searching && 
-                        <div className={styles.searchPulse}>
+                        <div className='w-24 h-24 bg-gradient-to-r from-blue-300 to-blue-400 absolute m-auto inset-0 rounded-full grid items-center text-5xl after:content-[""] after:absolute after:w-full after:h-full after:bg-blue-200 after:rounded-full after:opacity-70 after:animate-beatAfter before:content-[""] before:absolute before:w-full before:h-full before:bg-blue-200 before:rounded-full before:opacity-70 before:animate-beatBefore'>
                             <div className='text-3xl text-slate-900 font-medium flex justify-center items-center'>
                                 <FiSearch/>
                             </div>

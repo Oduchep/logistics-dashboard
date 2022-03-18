@@ -12,7 +12,18 @@ module.exports = {
         'evening-blue': '#222f47',
         'night-black': '#060d1c'
       },
+      keyframes: {
+        pulsate: {
+          '100%': { 
+            transform: 'scale(2.5)',
+            opacity: '0' },
+        },
+      },
+      animation: {
+        'beatBefore': 'pulsate 2s ease-out infinite',
+        'beatAfter': 'pulsate 2s 1s ease-out infinite',
+      }
     },
-  },
   plugins: [],
+  }
 }
