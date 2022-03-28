@@ -10,7 +10,7 @@ const ShipmentsContainer = () => {
     const [yearlyShipments, setYearlyShipments] = yearly
     const [activeShipmentsMenu, setActiveShipmentsMenu] = shipmentsMenu
 
-    console.log(dailyShipments)
+    // console.log(dailyShipments)
     const [dailyData, setDailyData] = useState({
         labels: dailyShipments.map((data) => data.time),
         datasets: [

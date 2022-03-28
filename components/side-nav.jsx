@@ -1,18 +1,29 @@
+import { useContext} from 'react'
 import {TiHome} from 'react-icons/ti';
 import {FaTruck, FaFileInvoice} from 'react-icons/fa'
 import {BsPersonFill, BsPeopleFill} from 'react-icons/bs'
 import {GiCargoShip} from 'react-icons/gi'
-import {MdSupport} from 'react-icons/md'
+import { MdSupport, MdClose } from 'react-icons/md'
 import {SiGoogleanalytics} from 'react-icons/si'
 import {HiCreditCard} from 'react-icons/hi'
 import {AiTwotoneSetting} from 'react-icons/ai'
 import NavLink from './nav-link';
+import { DataContext } from '../utilities/DataContext';
 
 
 const SideNav = () => {
+  const { setNavIsOpen } = useContext(DataContext)
+
+  const closeNav = () => {
+    setNavIsOpen(false)
+    console.log("nav closed")
+  }
 
   return (
-    <nav>
+    <nav className='h-full'>
+      <div className='flex justify-end lg:hidden mb-2 text-3xl font-extrabold text-slate-800 dark:text-white' onClick={closeNav}>
+        <MdClose/>
+      </div>
       <h1 className='px-5 font-bold text-2xl mb-5 dark:text-white'>IPI<span className='text-blue-600'>.</span></h1>
       <ul className='scroll-smooth'>
         <p className='uppercase font-medium text-slate-600 dark:text-slate-400 text-xs px-5 py-3'> Main menu </p>

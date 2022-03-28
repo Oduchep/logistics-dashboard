@@ -11,6 +11,8 @@ export const DataProvider = (props) => {
 
     const [toggleModal, setToggleModal] = useState(false)
 
+    const [navIsOpen, setNavIsOpen] = useState(false)
+
     const [searching, setSearching] = useState(true)
 
     const [activeShipmentsMenu, setActiveShipmentsMenu] = useState('3')
@@ -259,6 +261,8 @@ export const DataProvider = (props) => {
     <DataContext.Provider
       value={{
         openModal,
+        navIsOpen,
+        setNavIsOpen,
         isSearching:[
           searching,
           setSearching

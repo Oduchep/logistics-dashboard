@@ -14,7 +14,7 @@ const VehiclesModal = () => {
 
   return (
     <div className={`fixed inset-0 bg-gray-600 bg-opacity-50 dark:bg-black dark:bg-opacity-70 overflow-y-auto h-full w-full ${toggleModal ? 'block' : 'hidden'}`}>
-        <div className="relative top-24 mx-auto px-5 lg:px-10 py-5 w-4/5 lg:w-1/2 shadow-lg rounded-md bg-white dark:bg-midnight-blue">
+        <div className="relative top-24 bottom-12 mx-auto px-5 lg:px-10 py-5 w-4/5 lg:w-1/2 shadow-lg rounded-md bg-white dark:bg-midnight-blue">
             <div className='mb-3'>
                 <button onClick={() => setToggleModal(false)} className='float-right text-slate-800 dark:text-white text-xl rounded-full'> <MdCancelPresentation/> </button>
             </div>
